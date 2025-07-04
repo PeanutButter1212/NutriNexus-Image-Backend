@@ -3,6 +3,8 @@ from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import JSONResponse
 from ultralytics import YOLO
 import os
+from fastapi.middleware.cors import CORSMiddleware
+
 
 
 app = FastAPI()
@@ -28,3 +30,12 @@ async def predict(file: UploadFile = File(...)):
     os.remove(temp_file)
 
     return JSONResponse(content={"detections": detected_classes})
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Or list your actual frontend domain(s)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)

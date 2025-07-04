@@ -6,7 +6,7 @@ torchvision==0.16.2+cpu
 ultralytics
 python-multipart
 opencv-python
-numpy
+numpy<2 #somehow i got error that pytorch and ultralyitics need version 1.x so need install a earlier version
 
 --extra-index-url https://download.pytorch.org/whl/cpu
 

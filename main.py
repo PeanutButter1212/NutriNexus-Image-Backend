@@ -27,6 +27,9 @@ async def predict(file: UploadFile = File(...)):
 
     detected_classes = [names[int(box.cls)] for box in boxes]
 
+    #delete results here to clear memory cause rn max is 1bg
+    del results
+
     os.remove(temp_file)
 
     return JSONResponse(content={"detections": detected_classes})
